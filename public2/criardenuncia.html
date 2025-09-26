@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Criar Denúncia - Portal JLB</title>
+  <link rel="stylesheet" href="css/style-denuncia.css" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="container-denuncia">
+    <header class="cabecalho">
+      <div class="logo-area">
+        <img src="Imagens/logo preto png.png" alt="Logo JLB" class="logo" />
+        <h1 class="portal-jlb">Portal JLB</h1>
+      </div>
+      <nav class="menu-navegacao">
+        <button class="menu-botao perfil botao-perfil">
+          <i class="fas fa-user"></i>
+          <span>Perfil</span>
+        </button>
+        <a href="minhasdenuncias.html">
+          <button class="menu-botao minhas-denuncias">
+            <i class="fas fa-file-alt"></i>
+            <span>Minhas Denúncias</span>
+          </button>
+        </a>
+        <a href="telainiciuser.html">
+          <button class="menu-botao voltar">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Voltar</span>
+          </button>
+        </a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="intro">
+        <h2>Criar Nova Denúncia</h2>
+      </section>
+      <form class="formulario-denuncia">
+        <div class="campo-form">
+          <label for="titulo">Título da Denúncia</label>
+          <input type="text" id="titulo" name="titulo" placeholder="Digite o título" required />
+        </div>
+        <div class="campo-form">
+          <label for="categoria">Categoria</label>
+          <select id="categoria" name="categoria" required>
+            <option value="">Selecione</option>
+            <option value="violencia">Violência</option>
+            <option value="discriminacao">Discriminação</option>
+            <option value="outros">Outros</option>
+          </select>
+        </div>
+        <div class="campo-form">
+          <label for="descricao">Descrição</label>
+          <textarea id="descricao" name="descricao" rows="5" placeholder="Descreva os detalhes" required></textarea>
+        </div>
+        <button type="submit" class="botao-enviar">
+          Enviar Denúncia <i class="fas fa-paper-plane"></i>
+        </button>
+      </form>
+    </main>
+
+    <footer class="rodape">
+      <p>© 2025 JLB - Todos os direitos reservados.</p>
+    </footer>
+  </div>
+
+  <!-- Script -->
+  <script src="js/perfil-link.js"></script>
+</body>
+</html>

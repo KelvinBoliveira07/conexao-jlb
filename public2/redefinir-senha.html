@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Redefinir Senha</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/redefinir-senha.css" />
+</head>
+<body>
+    <div class="container-redefinir">
+        <div class="second-content">
+            <h2 class="titulo-redefinir">Redefinir Senha</h2>
+            
+            <form id="form-redefinir-senha">
+                <!-- ETAPA 1: Verificação de e-mail e nome -->
+                <div id="etapa-verificacao">
+                    <div class="campo-input">
+                        <input type="email" id="email" placeholder="Email" required>
+                    </div>
+                    <div class="campo-input">
+                        <input type="text" id="nome" placeholder="Nome de Usuário" required>
+                    </div>
+                    <button type="button" id="btnVerificar" class="botao-redefinir">Verificar</button>
+                </div>
+
+                <!-- ETAPA 2: Redefinição da senha (inicialmente oculta) -->
+                <div id="etapa-senha" style="display:none;">
+                    <div class="campo-input">
+                        <input type="password" id="nova-senha" placeholder="Nova Senha" required>
+                    </div>
+                    <button type="submit" class="botao-redefinir">Redefinir Senha</button>
+                </div>
+            </form>
+            <p id="mensagem-status"></p>
+            <button id="btnVoltar" class="botao-voltar">Voltar</button>
+        </div>
+    </div>
+    <script src="js/redefinir-senha.js"></script>
+</body>
+</html>

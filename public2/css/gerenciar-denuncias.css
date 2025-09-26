@@ -1,0 +1,250 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  background: #ffffff;
+  min-height: 100vh;
+}
+
+/* Container principal */
+.container-gerenciar {
+  background: #f5f5f5;
+  max-width: 1440px;
+  margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 80px; /* espaço pro rodapé */
+}
+
+/* Header */
+.cabecalho-dashboard {
+  background: #ffffff;
+  height: 80px;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border: 1px solid #000000;
+  border-radius: 10px;
+}
+
+.portal-jlb {
+  font-size: 32px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.menu-navegacao-dashboard {
+  display: flex;
+  gap: 20px;
+}
+
+.menu-navegacao-dashboard button {
+  background: #c3c3c3;
+  border: 1px solid #1565c0;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+.menu-navegacao-dashboard button:hover {
+  background-color: #d0e1f9;
+  transform: translateY(-2px);
+}
+
+.menu-navegacao-dashboard .ativo {
+  background-color: #1976d2;
+  color: white;
+}
+
+/* Introdução */
+.introducao {
+  text-align: center;
+  margin: 60px auto 20px;
+}
+
+.introducao h2 {
+  font-size: 48px;
+  font-weight: 700;
+  color: #333333;
+  letter-spacing: 0.8px;
+  margin-bottom: 20px;
+}
+
+.introducao p {
+  font-size: 32px;
+  font-weight: 400;
+  color: #666666;
+}
+
+/* Lista de Denúncias */
+.lista-denuncias {
+  margin: 40px auto;
+  width: 90%;
+  max-width: 1255px;
+  background: #ffffff;
+  border: 1px solid #1565c0;
+  border-radius: 5px;
+  padding: 32px;
+  position: relative;
+}
+
+.denuncia {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: none;
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.denuncia h3 {
+  font-size: 24px;
+  font-weight: 700;
+  text-align: left;
+  color: #000000;
+  flex: 1;
+}
+
+.status {
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  margin-right: 20px;
+}
+
+.status.andamento {
+  color: #ffa500;
+}
+
+.status.aprovada {
+  color: #008000;
+}
+
+.btn-visualizar {
+  background-color: #1976d2;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  border: none;
+  border-radius: 15px;
+  padding: 4px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+.btn-visualizar:hover {
+  background-color: #125ca1;
+  transform: translateY(-2px);
+}
+
+/* Sem mais denúncias */
+.sem-mais {
+  text-align: center;
+  font-size: 48px;
+  font-weight: 400;
+  color: rgba(51, 51, 51, 0.5);
+  margin-top: 80px;
+}
+
+/* Rodapé fixo */
+.rodape-dashboard {
+  background-color: #222;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+  z-index: 10;
+}
+
+.rodape-dashboard:hover {
+  background-color: #111;
+}
+
+.rodape-dashboard p {
+  font-size: 18px;
+  color: #ffffff;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.rodape-dashboard a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 8px;
+  transition: color 0.3s;
+}
+
+.rodape-dashboard a:hover {
+  color: #1976d2;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .rodape-dashboard {
+    height: auto;
+    padding: 20px 10px;
+    text-align: center;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+  }
+
+  .rodape-dashboard p {
+    font-size: 16px;
+  }
+
+  .menu-navegacao-dashboard {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .introducao h2 {
+    font-size: 32px;
+  }
+
+  .introducao p {
+    font-size: 20px;
+  }
+
+  .lista-denuncias {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .denuncia h3 {
+    font-size: 20px;
+  }
+
+  .status {
+    font-size: 14px;
+  }
+}

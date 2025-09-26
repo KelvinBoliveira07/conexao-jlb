@@ -1,0 +1,206 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: #f1f1f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+.container-login {
+  display: flex;
+  width: 900px; /* Largura aumentada */
+  height: 550px; /* Altura aumentada */
+  border-radius: 12px; /* Cantos mais arredondados */
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+  transition: 0.3s ease;
+}
+
+/* Coluna Esquerda */
+.left-side {
+  background-color: #D3D3D3; /* Cor de fundo mais clara */
+  width: 50%;
+  padding: 40px; /* Preenchimento aumentado */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid #ddd;
+}
+
+.left-side .logo {
+  width: 120px; /* Aumentar o tamanho do logo */
+  height: auto;
+  margin: 0 auto 20px;
+}
+
+.left-side h1 {
+  font-size: 24px; /* Aumentar o tamanho da fonte */
+  margin-bottom: 12px;
+}
+
+.left-side .azul {
+  color: #007bff;
+}
+
+/* Letras do parágrafo em azul */
+.left-side p {
+  font-size: 16px; /* Aumentar o tamanho da fonte */
+  color: #007bff;
+  margin-bottom: 30px;
+}
+
+/* Botões modernos com borda azul */
+.botao-login,
+.botao-voltar {
+  cursor: pointer;
+  background-color: #f0f0f0; /* Cor de fundo mais clara */
+  border: 1px solid #007bff; /* Borda azul */
+  color: #333; /* Cor do texto mais escura */
+  padding: 12px 28px; /* Preenchimento aumentado */
+  border-radius: 8px; /* Cantos mais arredondados */
+  font-size: 16px; /* Tamanho da fonte aumentado */
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center; /* Centralizar texto do botão */
+  gap: 8px;
+  transition: background-color 0.3s, color 0.3s, transform 0.1s, border-color 0.3s;
+  text-decoration: none;
+}
+
+.botao-login:hover,
+.botao-voltar:hover {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+  transform: translateY(-2px);
+}
+
+.botao-login:active,
+.botao-voltar:active {
+  transform: translateY(1px);
+}
+
+/* Coluna Direita */
+.right-side {
+  width: 50%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.titulo-login {
+  font-size: 26px; /* Aumentar o tamanho da fonte */
+  color: #007bff;
+  margin-bottom: 25px;
+}
+
+.right-side input {
+  width: 100%;
+  padding: 12px 18px; /* Aumentar o preenchimento */
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px; /* Aumentar o tamanho da fonte */
+  transition: border-color 0.3s, border-width 0.3s; /* Adicionado transition para border-width */
+}
+
+/* Aumenta e reforça a borda do input ao focar */
+.right-side input:focus {
+  border-color: #007bff;
+  border-width: 2px; /* Aumenta a espessura da borda */
+  outline: none;
+}
+
+/* Links com borda azul */
+.esqueceu {
+  display: inline-block;
+  margin-bottom: 20px;
+  font-size: 14px;
+  text-decoration: none;
+  border: 1px solid #007bff; /* Borda azul */
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: black;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s, transform 0.1s;
+}
+
+.esqueceu:hover {
+  background-color: #007bff;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Mensagens de feedback */
+.mensagem-erro, .mensagem-sucesso {
+  margin-top: 5px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Alerts flutuantes */
+.alerta-erro, .alerta-sucesso {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 14px 24px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: bold;
+  z-index: 9999;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  font-size: 15px;
+  animation: fadein 0.3s, fadeout 0.3s 3s;
+}
+
+/* Define a cor de fundo para os alertas */
+.alerta-erro {
+  background-color: #ff4d4f; /* Cor de fundo vermelha para erro */
+}
+
+.alerta-sucesso {
+  background-color: #52c41a; /* Cor de fundo verde para sucesso */
+}
+
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeout {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-10px); }
+}
+/* Responsivo */
+@media (max-width: 768px) {
+  .container-login {
+    flex-direction: column;
+    width: 90%;
+    height: auto;
+  }
+
+  .left-side,
+  .right-side {
+    width: 100%;
+    padding: 30px;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .right-side {
+    border-bottom: none;
+  }
+}

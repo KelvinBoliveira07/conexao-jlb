@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil do Usuário</title>
+  <link rel="stylesheet" href="css/perfiluser.css">
+</head>
+<body>
+  <div class="container-login">
+
+    <div class="card-login">
+
+      <!-- Foto de perfil -->
+      <div class="perfil-foto">
+        <img id="imgPreview" src="https://via.placeholder.com/120" alt="Foto de Perfil">
+        <label for="fotoUsuario" class="btn-trocar-foto">Trocar Foto</label>
+        <input type="file" id="fotoUsuario" accept="image/*">
+      </div>
+
+      <!-- Campos do perfil -->
+      <div class="perfil-info">
+        <label for="nomeUsuario">Nome</label>
+        <input type="name" id="nomeUsuario" placeholder="Seu nome">
+
+        <label for="emailUsuario">Email</label>
+        <input type="email" id="emailUsuario" placeholder="usuario@exemplo.com">
+
+        <label for="tipoUsuario">Tipo de Usuário</label>
+        <input type="text" id="tipoUsuario" placeholder="Usuário Normal" disabled>
+      </div>
+
+      <!-- Botão salvar -->
+      <button id="btnSalvar" class="btn-salvar">Salvar Alterações</button>
+
+      <!-- Botão voltar -->
+      <button class="btn-voltar">← Voltar</button>
+
+    </div>
+
+  </div>
+
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="js/perfil-link.js"></script>
+  <script src="js/perfiluser.js"></script>
+</body>
+</html>

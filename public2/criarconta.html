@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cadastro - Portal JLB</title>
+  <link rel="stylesheet" href="css/criarconta.css" />
+</head>
+<body>
+  <div class="container-login">
+    <!-- Coluna Esquerda -->
+    <div class="left-side">
+      <img class="logo" src="Imagens/logo preto png.png" alt="Logo" />
+      <h1><span>Crie sua conta</span> <span class="azul">agora mesmo!</span></h1>
+      <p>Já tem uma conta? Clique abaixo.</p>
+      <a href="login.html"><button class="botao-login">Logar</button></a>
+    </div>
+
+    <!-- Coluna Direita -->
+    <div class="right-side">
+      <h2 class="titulo-login">Cadastro</h2>
+
+      <input type="text" id="nome" placeholder="Nome" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="senha" placeholder="Senha" required />
+      <small>A senha deve ter mínimo 8 caracteres, 1 letra maiúscula e 1 símbolo</small>
+
+      <p id="mensagem-cadastro" class="mensagem-erro"></p> <!-- Mensagem de feedback JS -->
+
+      <button id="btnCadastrar">Cadastrar</button>
+    </div>
+  </div>
+
+  <script src="js/cadastro.js"></script>
+</body>
+</html>

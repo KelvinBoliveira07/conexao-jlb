@@ -1,0 +1,182 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: #f5f5f5;
+}
+
+.container-dashboard {
+  background-color: #ffffff;
+  max-width: 1440px;
+  margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Header */
+.cabecalho-dashboard {
+  background: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.portal-jlb {
+  font-size: 32px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.menu-navegacao-dashboard {
+  display: flex;
+  gap: 20px;
+}
+
+.menu-navegacao-dashboard button {
+  background: #c3c3c3;
+  border: 1px solid #1976d2;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.3s;
+}
+
+.menu-navegacao-dashboard button:hover {
+  background-color: #d0e1f9;
+}
+
+.menu-navegacao-dashboard .ativo {
+  background-color: #1976d2;
+  color: #ffffff;
+}
+
+/* Título */
+.titulo-dashboard {
+  font-size: 36px;
+  font-weight: 700;
+  color: #333333;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.subtitulo-dashboard {
+  font-size: 28px;
+  font-weight: 400;
+  color: #666666;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* Métricas */
+.metricas-container {
+  background: linear-gradient(to left, rgba(255,255,255,0.2), rgba(255,255,255,0.2)), #ffffff;
+  border: 1px solid #1565c0;
+  border-radius: 5px;
+  width: 90%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card-metrica {
+  border-radius: 15px;
+  padding: 16px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  border: 1px solid;
+}
+
+.card-total {
+  color: #1565c0;
+  border-color: #1565c0;
+}
+
+.card-andamento {
+  color: #ffa500;
+  border-color: #ffa500;
+}
+
+.card-usuarios {
+  color: #000000;
+  border-color: #000000;
+}
+
+.card-aprovadas {
+  color: #008000;
+  border-color: #008000;
+}
+
+.card-anuladas {
+  color: #ff0000;
+  border-color: #ff0000;
+}
+
+/* Rodapé fixo */
+.rodape-dashboard {
+  background-color: #222;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+  z-index: 10;
+}
+
+.rodape-dashboard:hover {
+  background-color: #111;
+}
+
+.rodape-dashboard p {
+  font-size: 18px;
+  color: #ffffff;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.rodape-dashboard a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 8px;
+  transition: color 0.3s;
+}
+
+.rodape-dashboard a:hover {
+  color: #1976d2;
+}

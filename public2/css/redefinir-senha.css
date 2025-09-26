@@ -1,0 +1,123 @@
+/* Importa o estilo global para reaproveitar as configurações básicas */
+@import url('style.css');
+
+body {
+  background-color: #f1f1f1;
+}
+
+.container-redefinir {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+.second-content {
+  background-color: #fff;
+  padding: 40px; /* Preenchimento aumentado */
+  border-radius: 12px; /* Cantos mais arredondados */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+  width: 450px; /* Largura ajustada para o formulário de redefinição */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.titulo-redefinir {
+  font-size: 26px; /* Aumentar o tamanho da fonte */
+  color: #007bff;
+  margin-bottom: 25px;
+}
+
+.campo-input {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px; /* Espaço aumentado */
+}
+
+.campo-input input {
+  width: 100%;
+  padding: 12px 18px; /* Aumentar o preenchimento */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px; /* Aumentar o tamanho da fonte */
+  transition: border-color 0.3s;
+}
+
+.campo-input input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Reutiliza o estilo do botão de login */
+.botao-redefinir {
+  cursor: pointer;
+  background-color: #f0f0f0;
+  border: 1px solid #007bff;
+  color: #333;
+  padding: 12px 28px; /* Preenchimento aumentado */
+  border-radius: 8px;
+  font-size: 16px; /* Tamanho da fonte aumentado */
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.3s, color 0.3s, transform 0.1s, border-color 0.3s;
+  width: 100%;
+}
+
+.botao-redefinir:hover {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+  transform: translateY(-2px);
+}
+
+.botao-redefinir:active {
+  transform: translateY(1px);
+}
+
+.mensagem-erro, .mensagem-sucesso {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+/* Estilo para o botão Voltar */
+.botao-voltar {
+  cursor: pointer;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc; /* Cor de borda mais neutra */
+  color: #333;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.3s, color 0.3s, transform 0.1s, border-color 0.3s;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.botao-voltar:hover {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+  transform: translateY(-2px);
+}
+
+.botao-voltar:active {
+  transform: translateY(1px);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .second-content {
+    width: 90%;
+  }
+}

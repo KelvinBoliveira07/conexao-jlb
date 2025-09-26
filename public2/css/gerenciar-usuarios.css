@@ -1,0 +1,173 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: #ffffff;
+}
+
+.container-gerenciar {
+  background: #f5f5f5;
+  max-width: 1440px;
+  margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 120px;
+}
+
+/* Header */
+.cabecalho-dashboard {
+  background: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.logo-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border: 1px solid #000000;
+  border-radius: 10px;
+}
+
+.portal-jlb {
+  font-size: 32px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.menu-navegacao-dashboard {
+  display: flex;
+  gap: 20px;
+}
+
+.menu-navegacao-dashboard button {
+  background: #c3c3c3;
+  border: 1px solid #1565c0;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.menu-navegacao-dashboard button:hover {
+  background-color: #d0e1f9;
+}
+
+.menu-navegacao-dashboard .ativo {
+  background-color: #1976d2;
+  color: #ffffff;
+}
+
+/* Introdução */
+.introducao {
+  text-align: center;
+  margin: 60px auto 20px;
+}
+
+.introducao h2 {
+  font-size: 48px;
+  font-weight: 700;
+  color: #333333;
+  letter-spacing: 0.8px;
+  margin-bottom: 16px;
+}
+
+.introducao p {
+  font-size: 32px;
+  font-weight: 400;
+  color: #666666;
+}
+
+/* Lista de Usuários */
+.lista-usuarios {
+  width: 90%;
+  max-width: 1255px;
+  margin: 40px auto;
+  background: linear-gradient(to left, rgba(255,255,255,0.2), rgba(255,255,255,0.2)), #ffffff;
+  border: 1px solid #1565c0;
+  border-radius: 5px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.usuario {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.usuario h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.usuario .email {
+  font-size: 20px;
+  text-decoration: underline;
+  color: #000000;
+}
+
+.usuario .status {
+  font-size: 18px;
+  font-weight: 600;
+  color: #008000;
+}
+
+.btn-editar {
+  background: #1976d2;
+  color: #ffffff;
+  border: none;
+  border-radius: 15px;
+  padding: 6px 20px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-editar:hover {
+  background-color: #125ca1;
+}
+
+/* Fim da Lista */
+.sem-mais {
+  text-align: center;
+  font-size: 48px;
+  font-weight: 400;
+  color: rgba(51, 51, 51, 0.5);
+  margin-top: 60px;
+}
+
+/* Footer */
+.rodape-dashboard {
+  background-color: #333333;
+  color: #ffffff;
+  font-size: 20px;
+  text-align: center;
+  padding: 24px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}

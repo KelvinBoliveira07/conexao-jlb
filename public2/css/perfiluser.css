@@ -1,0 +1,169 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: #f1f1f1;
+}
+
+/* Container centralizado */
+.container-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Card estilo mobile */
+.card-login {
+  width: 100%;
+  max-width: 400px;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 30px 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Foto do perfil */
+.perfil-foto {
+  position: relative;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.perfil-foto img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid #007bff;
+  object-fit: cover; /* Faz a imagem cobrir todo o espaço, cortando as partes que não couberem */
+  object-position: center; /* Centraliza a imagem no contêiner */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.perfil-foto input[type="file"] {
+  display: none;
+}
+
+.btn-trocar-foto {
+  display: inline-block;
+  margin-top: 12px;
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+.btn-trocar-foto:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.btn-trocar-foto:active {
+  transform: translateY(1px);
+}
+
+/* Campos do perfil estilo mobile */
+.perfil-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.perfil-info label {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+.perfil-info input {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.perfil-info input:focus {
+  border-color: #007bff;
+}
+
+/* Botão salvar */
+.btn-salvar {
+  width: 100%;
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+  padding: 12px 0;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+  margin-bottom: 12px;
+}
+
+.btn-salvar:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.btn-salvar:active {
+  transform: translateY(1px);
+}
+
+/* Botão voltar */
+.btn-voltar {
+  background-color: #c0c0c0;
+  border: none;
+  color: black;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+  width: 100%;
+}
+
+.btn-voltar:hover {
+  background-color: #007bff;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.btn-voltar:active {
+  transform: translateY(1px);
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+  .card-login {
+    padding: 20px 15px;
+  }
+
+  .perfil-foto img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .perfil-info input {
+    font-size: 14px;
+  }
+
+  .btn-salvar, .btn-voltar {
+    font-size: 14px;
+    padding: 10px 0;
+  }
+}

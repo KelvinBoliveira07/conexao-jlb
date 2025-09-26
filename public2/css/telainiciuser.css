@@ -1,0 +1,190 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+.tela-inicial-user-claro {
+  background-color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* Cabeçalho */
+.cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 16px 40px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logotipo-fundo {
+  width: 60px;
+  height: 60px;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-preto-png-1 {
+  width: 80%;
+  height: auto;
+  object-fit: contain;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 32px;
+  margin-left: 40px;
+}
+
+.portal-jlb-destaque {
+  border: 2px solid #000000;
+  border-radius: 25px;
+  padding: 8px 20px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #000000;
+  background-color: #ffffff;
+}
+
+.botoes-nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: auto;
+}
+
+.botoes-nav button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 2px solid #1976d2;
+  border-radius: 20px;
+  background-color: #f2f2f2;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.botoes-nav button:hover {
+  background-color: #d0e1f9;
+}
+
+.botoes-nav button span {
+  color: #000000;
+}
+
+/* Hero */
+.hero {
+  background-color: #e0e0e0;
+  padding: 80px 50px;
+  text-align: center;
+  flex: 1;
+}
+
+.hero-titulo {
+  font-size: 36px;
+  font-weight: 700;
+  color: #333333;
+  margin-bottom: 16px;
+}
+
+.hero-subtitulo {
+  font-size: 20px;
+  color: #000000;
+  margin-bottom: 32px;
+}
+
+.botao-criar-denuncia {
+  background-color: #f2f2f2;
+  border: 2px solid #1976d2;
+  border-radius: 30px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.botao-criar-denuncia:hover {
+  background-color: #d0e1f9;
+}
+
+/* Minhas Denúncias */
+.minhas-denuncias {
+  padding: 50px;
+}
+
+.minhas-denuncias h2 {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+/* Bloco Incentivo */
+.bloco-incentivo {
+  background-color: #ffffff;
+  border: 1px solid #1976d2;
+  border-radius: 10px;
+  padding: 40px 50px;
+  margin: 40px 50px;
+}
+
+.bloco-incentivo figure {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  text-align: center;
+}
+
+.texto-incentivo {
+  flex: 1;
+}
+
+.bloco-incentivo h2 {
+  font-size: 24px;
+  color: #1976d2;
+  margin-bottom: 8px;
+}
+
+.bloco-incentivo p {
+  font-size: 18px;
+  font-weight: 500;
+  color: #333333;
+}
+
+.bloco-incentivo img {
+  width: 100px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Rodapé */
+.rodape {
+  background-color: #333333;
+  color: #ffffff;
+  text-align: center;
+  padding: 24px;
+  margin-top: auto; /* Faz o footer grudar no fim */
+}
+
+.portal-jlb {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
