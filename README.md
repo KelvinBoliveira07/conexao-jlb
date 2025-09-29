@@ -1,6 +1,6 @@
-# 🔗 Conexão JLB
+# 🏫 Conexão JLB
 
-> Sistema web (coloque aqui uma descrição curta do seu projeto)
+> Plataforma escolar para denúncias de bullying e violência.
 
 ---
 
@@ -10,7 +10,7 @@
 
 ---
 
-## 📈 Linguagens usadas no projeto
+## 📈 Linguagens usadas
 
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=KelvinBoliveira07&repo=conexao-jlb&layout=compact&theme=tokyonight)
 
@@ -19,9 +19,5 @@
 ## 🛠 Tecnologias utilizadas
 
 <p align="left">
-  <!-- Linguagens que o GitHub detecta -->
-  <img src="https://skillicons.dev/icons?i=html,css,js,nodejs" />
-
-  <!-- Frameworks/libs que você usou manualmente -->
-  <img src="https://skillicons.dev/icons?i=bootstrap,express,mysql" />
+  <img src="https://skillicons.dev/icons?i=html,css,js,nodejs,bootstrap,express,mysql" />
 </p>
