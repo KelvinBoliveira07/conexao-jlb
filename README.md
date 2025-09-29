@@ -1,25 +1,27 @@
-# 👋 Olá! Eu sou o Kelvin
+# 🔗 Conexão JLB
 
-## 📊 Minhas estatísticas no GitHub
+> Sistema web (coloque aqui uma descrição curta do seu projeto)
 
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=KelvinBoliveira07&show_icons=true&theme=tokyonight" alt="stats"/>
-</p>
+---
 
-## 📈 Linguagens mais usadas
+## 📊 Estatísticas do repositório
 
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=KelvinBoliveira07&layout=compact&theme=tokyonight" alt="langs"/>
-</p>
+![Repo Card](https://github-readme-stats.vercel.app/api/pin/?username=KelvinBoliveira07&repo=conexao-jlb&theme=tokyonight)
 
-## 🚀 Streak de contribuições
+---
 
-<p align="center">
-  <img src="https://streak-stats.demolab.com?user=KelvinBoliveira07&theme=tokyonight" alt="streak"/>
-</p>
+## 📈 Linguagens usadas no projeto
 
-## 🛠 Tecnologias que eu uso
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=KelvinBoliveira07&repo=conexao-jlb&layout=compact&theme=tokyonight)
 
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=html,css,js,angular,react,nodejs,mysql,git,github,vscode" />
+---
+
+## 🛠 Tecnologias utilizadas
+
+<p align="left">
+  <!-- Linguagens que o GitHub detecta -->
+  <img src="https://skillicons.dev/icons?i=html,css,js,nodejs" />
+
+  <!-- Frameworks/libs que você usou manualmente -->
+  <img src="https://skillicons.dev/icons?i=bootstrap,express,mysql" />
 </p>
