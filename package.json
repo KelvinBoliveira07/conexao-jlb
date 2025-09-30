@@ -20,6 +20,7 @@
     "mysql2": "^3.14.3",
     "nodemailer": "^7.0.6",
     "parsec": "^2.0.2",
-    "sequelize": "^6.37.7"
+    "sequelize": "^6.37.7",
+    "syncfusion-javascript": "^20.3.56"
   }
 }
