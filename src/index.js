@@ -1,6 +1,8 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
+import cors from "cors"; 
+import { Op, Sequelize } from 'sequelize';
 
 // DB
 import { connectDB, sequelize } from "./config/configDb.js";
@@ -29,6 +31,9 @@ app.use(express.json({ limit: '15mb' }));
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Middleware para permitir CORS
+app.use(cors());
+
 // Servir arquivos estáticos
 app.use(express.static(path.join(__dirname, '../public2')));
 
@@ -39,8 +44,54 @@ app.use("/api/auth", authRoutes);
 app.use("/api/userprofile", userProfileRoutes);
 
 // ROTAS PARA O PROCESSO DE REDEFINIÇÃO DE SENHA EM DUAS ETAPAS
-app.post("/api/verificar-usuario", verificarUsuario); // Rota para a primeira etapa
-app.post("/api/redefinir-senha", redefinirSenha);     // Rota para a segunda etapa
+app.post("/api/verificar-usuario", verificarUsuario);
+app.post("/api/redefinir-senha", redefinirSenha);
+
+// ENDPOINT PARA CONTAR USUÁRIOS POR STATUS
+app.get("/api/dashboard/usuarios", async (req, res) => {
+  try {
+    const usuariosPorStatus = await usuarioModel.findAll({
+      attributes: [
+        "statusUsuario",
+        [sequelize.fn("COUNT", sequelize.col("idUsuario")), "total"],
+      ],
+      group: ["statusUsuario"],
+    });
+
+    const usuariosFormatados = usuariosPorStatus.map((usuario) => ({
+      statusUsuario: usuario.statusUsuario,
+      total: usuario.get("total"),
+    }));
+
+    res.json(usuariosFormatados);
+  } catch (error) {
+    console.error("Erro ao buscar dados de usuários:", error);
+    res.status(500).json({ error: "Erro interno do servidor" });
+  }
+});
+
+// ENDPOINT PARA CONTAR DENÚNCIAS POR STATUS
+app.get("/api/dashboard/denuncias", async (req, res) => {
+  try {
+    const denunciasPorStatus = await denunciaModel.findAll({
+      attributes: [
+        "statusDenuncia",
+        [sequelize.fn("COUNT", sequelize.col("idDenuncia")), "total"],
+      ],
+      group: ["statusDenuncia"],
+    });
+
+    const denunciasFormatadas = denunciasPorStatus.map((denuncia) => ({
+      statusDenuncia: denuncia.statusDenuncia,
+      total: denuncia.get("total"),
+    }));
+
+    res.json(denunciasFormatadas);
+  } catch (error) {
+    console.error("Erro ao buscar dados de denúncias:", error);
+    res.status(500).json({ error: "Erro interno do servidor" });
+  }
+});
 
 // Rota raiz: redireciona para login
 app.get("/", (req, res) => {
@@ -56,7 +107,7 @@ app.get("/:file", (req, res) => {
 app.listen(PORT, async () => {
   try {
     await connectDB();
-    await sequelize.sync({ alter: true });
+    await sequelize.sync();
     console.log(`🔥 Servidor rodando em http://localhost:${PORT}`);
   } catch (err) {
     console.error("❌ Erro ao iniciar o servidor:", err);

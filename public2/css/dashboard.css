@@ -94,52 +94,48 @@ body {
   margin-bottom: 40px;
 }
 
-/* Métricas */
-.metricas-container {
-  background: linear-gradient(to left, rgba(255,255,255,0.2), rgba(255,255,255,0.2)), #ffffff;
-  border: 1px solid #1565c0;
-  border-radius: 5px;
-  width: 90%;
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 40px;
+/* Estilo para a seção que conterá os gráficos */
+.dashboard-content-grid {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 40px;
 }
 
-.card-metrica {
-  border-radius: 15px;
-  padding: 16px;
+/* Estilo para os contêineres dos gráficos */
+.chart-box {
+  width: 500px;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative; /* Adicionado para posicionamento do total */
+}
+
+.chart-title {
   text-align: center;
-  font-size: 24px;
-  font-weight: 700;
-  border: 1px solid;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
 }
 
-.card-total {
-  color: #1565c0;
-  border-color: #1565c0;
+.chart-total {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(calc(100% + 20px), -50%);
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    white-space: nowrap;
 }
 
-.card-andamento {
-  color: #ffa500;
-  border-color: #ffa500;
-}
-
-.card-usuarios {
-  color: #000000;
-  border-color: #000000;
-}
-
-.card-aprovadas {
-  color: #008000;
-  border-color: #008000;
-}
-
-.card-anuladas {
-  color: #ff0000;
-  border-color: #ff0000;
+.chart-total::before {
+    content: "→"; /* Símbolo de seta para a direita */
+    margin-right: 10px;
+    font-size: 1.5rem;
+    color: #666;
 }
 
 /* Rodapé fixo */
@@ -179,4 +175,9 @@ body {
 
 .rodape-dashboard a:hover {
   color: #1976d2;
+}
+
+/* Garante que o rodapé fixo não cubra o conteúdo */
+main {
+  padding-bottom: 120px;
 }

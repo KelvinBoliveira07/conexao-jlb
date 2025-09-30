@@ -12,6 +12,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@syncfusion/ej2-base": "^25.1.41",
+    "@syncfusion/ej2-buttons": "^25.1.41",
+    "@syncfusion/ej2-charts": "^25.2.6",
+    "@syncfusion/ej2-popups": "^25.1.41",
     "body-parser": "^2.2.0",
     "cor": "^0.0.0",
     "cors": "^2.8.5",
@@ -20,7 +24,6 @@
     "mysql2": "^3.14.3",
     "nodemailer": "^7.0.6",
     "parsec": "^2.0.2",
-    "sequelize": "^6.37.7",
-    "syncfusion-javascript": "^20.3.56"
+    "sequelize": "^6.37.7"
   }
 }

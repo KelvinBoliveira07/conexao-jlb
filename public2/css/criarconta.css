@@ -197,3 +197,36 @@ body {
     border-bottom: none;
   }
 }
+* Estilos para o NOVO Contêiner do Gráfico */
+.dashboard-content-grid {
+  display: flex; /* Ou grid se preferir */
+  justify-content: center; /* Centraliza o item se houver apenas um */
+  gap: 40px;
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px auto;
+  align-items: start;
+}
+
+.grafico-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-grow: 1; /* Permite que o contêiner do gráfico cresça */
+    max-width: 600px; /* Limita a largura do gráfico se for o único item */
+}
+
+
+@media (max-width: 992px) {
+    /* ... */
+    .dashboard-content-grid {
+        flex-direction: column; /* Empilha em telas menores */
+        align-items: center; /* Centraliza itens empilhados */
+    }
+}
