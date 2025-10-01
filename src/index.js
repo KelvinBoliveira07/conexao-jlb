@@ -1,4 +1,4 @@
-import express from "express";
+import express from 'express';
 import path from "path";
 import { fileURLToPath } from "url";
 import cors from "cors"; 
@@ -11,15 +11,15 @@ import { connectDB, sequelize } from "./config/configDb.js";
 import usuarioModel from "./models/usuarioModel.js";
 import administradorModel from "./models/administradorModel.js";
 import denunciaModel from "./models/denunciaModel.js";
+import categoriaModel from "./models/categoriaModel.js";
+import gerenciamentoUsuarioModel from "./models/gerenciamentoUsuarioModel.js";
+import gerenciamentoDenunciaModel from "./models/gerenciamentoDenunciaModel.js";
 
 // Rotas
-import userRoutes from "./routes/userRoutes.js";
-import adminRoutes from "./routes/adminRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import userProfileRoutes from "./routes/userProfileRoutes.js";
-
-// Controllers para redefinição de senha
-import { verificarUsuario, redefinirSenha } from "./controllers/userController.js";
+import denunciaRoutes from "./routes/denunciaRoutes.js";
+import dashboardRoutes from "./routes/dashboardRoutes.js"; 
 
 const app = express();
 const PORT = 3000;
@@ -37,61 +37,25 @@ app.use(cors());
 // Servir arquivos estáticos
 app.use(express.static(path.join(__dirname, '../public2')));
 
+// Configurar associações entre os modelos
+usuarioModel.hasMany(denunciaModel, { foreignKey: "idUsuario" });
+denunciaModel.belongsTo(usuarioModel, { foreignKey: "idUsuario" });
+categoriaModel.hasMany(denunciaModel, { foreignKey: "idCategoria" });
+denunciaModel.belongsTo(categoriaModel, { foreignKey: "idCategoria" });
+administradorModel.hasMany(gerenciamentoUsuarioModel, { foreignKey: "idAdm" });
+gerenciamentoUsuarioModel.belongsTo(administradorModel, { foreignKey: "idAdm" });
+usuarioModel.hasMany(gerenciamentoUsuarioModel, { foreignKey: "idUsuario" });
+gerenciamentoUsuarioModel.belongsTo(usuarioModel, { foreignKey: "idUsuario" });
+administradorModel.hasMany(gerenciamentoDenunciaModel, { foreignKey: "idAdm" });
+gerenciamentoDenunciaModel.belongsTo(administradorModel, { foreignKey: "idAdm" });
+denunciaModel.hasMany(gerenciamentoDenunciaModel, { foreignKey: "idDenuncia" });
+gerenciamentoDenunciaModel.belongsTo(denunciaModel, { foreignKey: "idDenuncia" });
+
 // Rotas da API
-app.use("/api/usuarios", userRoutes);
-app.use("/api/administradores", adminRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/userprofile", userProfileRoutes);
-
-// ROTAS PARA O PROCESSO DE REDEFINIÇÃO DE SENHA EM DUAS ETAPAS
-app.post("/api/verificar-usuario", verificarUsuario);
-app.post("/api/redefinir-senha", redefinirSenha);
-
-// ENDPOINT PARA CONTAR USUÁRIOS POR STATUS
-app.get("/api/dashboard/usuarios", async (req, res) => {
-  try {
-    const usuariosPorStatus = await usuarioModel.findAll({
-      attributes: [
-        "statusUsuario",
-        [sequelize.fn("COUNT", sequelize.col("idUsuario")), "total"],
-      ],
-      group: ["statusUsuario"],
-    });
-
-    const usuariosFormatados = usuariosPorStatus.map((usuario) => ({
-      statusUsuario: usuario.statusUsuario,
-      total: usuario.get("total"),
-    }));
-
-    res.json(usuariosFormatados);
-  } catch (error) {
-    console.error("Erro ao buscar dados de usuários:", error);
-    res.status(500).json({ error: "Erro interno do servidor" });
-  }
-});
-
-// ENDPOINT PARA CONTAR DENÚNCIAS POR STATUS
-app.get("/api/dashboard/denuncias", async (req, res) => {
-  try {
-    const denunciasPorStatus = await denunciaModel.findAll({
-      attributes: [
-        "statusDenuncia",
-        [sequelize.fn("COUNT", sequelize.col("idDenuncia")), "total"],
-      ],
-      group: ["statusDenuncia"],
-    });
-
-    const denunciasFormatadas = denunciasPorStatus.map((denuncia) => ({
-      statusDenuncia: denuncia.statusDenuncia,
-      total: denuncia.get("total"),
-    }));
-
-    res.json(denunciasFormatadas);
-  } catch (error) {
-    console.error("Erro ao buscar dados de denúncias:", error);
-    res.status(500).json({ error: "Erro interno do servidor" });
-  }
-});
+app.use("/api/denuncias", denunciaRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 
 // Rota raiz: redireciona para login
 app.get("/", (req, res) => {
@@ -107,7 +71,7 @@ app.get("/:file", (req, res) => {
 app.listen(PORT, async () => {
   try {
     await connectDB();
-    await sequelize.sync();
+    await sequelize.sync({ alter: true });
     console.log(`🔥 Servidor rodando em http://localhost:${PORT}`);
   } catch (err) {
     console.error("❌ Erro ao iniciar o servidor:", err);

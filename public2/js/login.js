@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const loginButton = document.getElementById('btnLogin');
-  const emailInput = document.getElementById('email'); // Corrigido de 'nome' para 'email'
+  const emailInput = document.getElementById('email');
   const senhaInput = document.getElementById('senha');
   const mensagemLogin = document.getElementById('mensagem-login');
 
@@ -36,9 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await response.json();
 
       if (response.ok) {
-        // ✅ Armazena o email do usuário no sessionStorage
-        sessionStorage.setItem('usuarioLogado', data.usuario.email);
-
+        localStorage.setItem('idUsuario', data.usuario.idUsuario);
         showMessage('✅ Login bem-sucedido!', 'sucesso');
         setTimeout(() => window.location.href = 'telainiciuser.html', 1500);
       } else {

@@ -12,37 +12,43 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => alerta.remove(), 3000);
   };
 
-  btnLoginAdm.addEventListener('click', async (event) => {
-    event.preventDefault();
+  if (btnLoginAdm) {
+    btnLoginAdm.addEventListener('click', async (event) => {
+      event.preventDefault();
 
-    const email = emailAdm.value.trim();
-    const senha = senhaAdm.value.trim();
+      const email = emailAdm.value.trim();
+      const senha = senhaAdm.value.trim();
 
-    if (!email || !senha) {
-      showMessage('⚠️ Preencha todos os campos', 'erro');
-      return;
-    }
-
-    showMessage('⏳ Aguarde...', 'sucesso');
-
-    try {
-      const res = await fetch('/api/auth/loginadm', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ emailUsuario: email, senhaUsuario: senha })
-      });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        showMessage('✅ Login ADM realizado!', 'sucesso');
-        setTimeout(() => window.location.href = '/painelcontrole.html', 1500);
-      } else {
-        showMessage('❌ Erro no login: ' + (data.error || 'Credenciais inválidas.'), 'erro');
+      if (!email || !senha) {
+        showMessage('⚠️ Preencha todos os campos', 'erro');
+        return;
       }
-    } catch (err) {
-      console.error(err);
-      showMessage('❌ Erro na conexão com o servidor', 'erro');
-    }
-  });
+
+      showMessage('⏳ Aguarde...', 'sucesso');
+
+      try {
+        const res = await fetch('/api/auth/loginadm', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ emailUsuario: email, senhaUsuario: senha })
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          if (data.usuario && data.usuario.idUsuario) {
+            localStorage.setItem('idUsuario', data.usuario.idUsuario);
+          }
+          
+          showMessage('✅ Login ADM realizado!', 'sucesso');
+          setTimeout(() => window.location.href = '/painelcontrole.html', 1500);
+        } else {
+          showMessage('❌ Erro no login: ' + (data.error || 'Credenciais inválidas.'), 'erro');
+        }
+      } catch (err) {
+        console.error(err);
+        showMessage('❌ Erro na conexão com o servidor', 'erro');
+      }
+    });
+  }
 });

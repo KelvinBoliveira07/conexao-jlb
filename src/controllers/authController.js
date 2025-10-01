@@ -2,10 +2,10 @@ import usuarioModel from "../models/usuarioModel.js";
 
 export const loginUser = async (req, res) => {
   const { emailUsuario, senhaUsuario } = req.body;
+  let emailMinusculo;
 
   try {
-    // CONVERTE O EMAIL DE LOGIN PARA MINÚSCULAS ANTES DE BUSCAR NO BANCO
-    const emailMinusculo = emailUsuario.toLowerCase();
+    emailMinusculo = emailUsuario.toLowerCase();
     const usuario = await usuarioModel.findOne({ where: { emailUsuario: emailMinusculo } });
     
     if (!usuario) {
@@ -19,7 +19,7 @@ export const loginUser = async (req, res) => {
     res.json({
       message: "Login bem-sucedido",
       usuario: {
-        id: usuario.id,
+        idUsuario: usuario.idUsuario,
         nome: usuario.nomeUsuario,
         email: usuario.emailUsuario,
         tipo: usuario.tipoUsuario
@@ -27,16 +27,17 @@ export const loginUser = async (req, res) => {
     });
 
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: err.message });
   }
 };
 
 export const loginAdmin = async (req, res) => {
   const { emailUsuario, senhaUsuario } = req.body;
+  let emailMinusculo;
 
   try {
-    // CONVERTE O EMAIL DE LOGIN PARA MINÚSCULAS ANTES DE BUSCAR NO BANCO
-    const emailMinusculo = emailUsuario.toLowerCase();
+    emailMinusculo = emailUsuario.toLowerCase();
     const usuario = await usuarioModel.findOne({ where: { emailUsuario: emailMinusculo } });
 
     if (!usuario) {
@@ -54,7 +55,7 @@ export const loginAdmin = async (req, res) => {
     res.json({
       message: "Login de administrador bem-sucedido",
       usuario: {
-        id: usuario.id,
+        idUsuario: usuario.idUsuario,
         nome: usuario.nomeUsuario,
         email: usuario.emailUsuario,
         tipo: usuario.tipoUsuario
@@ -62,6 +63,8 @@ export const loginAdmin = async (req, res) => {
     });
 
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: err.message });
   }
 };
+

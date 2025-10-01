@@ -1,12 +1,9 @@
 import express from 'express';
-import { getPerfil, atualizarPerfil } from '../controllers/userProfileController.js';
+import { getPerfil, atualizarPerfil } from '../controllers/userController.js';
 
 const router = express.Router();
 
-// GET perfil por email
-router.get('/:emailUsuario', getPerfil);
-
-// PUT atualizar perfil (nome e foto)
-router.put('/:emailUsuario', atualizarPerfil);
+router.get('/:idUsuario', getPerfil);
+router.put('/:idUsuario', atualizarPerfil);
 
 export default router;

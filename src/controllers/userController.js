@@ -3,7 +3,6 @@ import usuarioModel from "../models/usuarioModel.js";
 // Função para criar um novo usuário
 export const createUser = async (req, res) => {
   try {
-    // Garante que o email seja salvo em minúsculas
     const emailMinusculo = req.body.emailUsuario.toLowerCase();
     const usuario = await usuarioModel.create({ ...req.body, emailUsuario: emailMinusculo });
     res.status(201).json(usuario);
@@ -12,22 +11,12 @@ export const createUser = async (req, res) => {
   }
 };
 
-// Função para listar todos os usuários
-export const getAllUsers = async (req, res) => {
-  try {
-    const usuarios = await usuarioModel.findAll();
-    res.json(usuarios);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-};
-
-// Função para obter perfil por e-mail
+// Função para obter perfil por ID
 export const getPerfil = async (req, res) => {
-  const { emailUsuario } = req.params;
+  const { idUsuario } = req.params;
 
   try {
-    const usuario = await usuarioModel.findOne({ where: { emailUsuario: emailUsuario.toLowerCase() } });
+    const usuario = await usuarioModel.findByPk(idUsuario);
     if (!usuario) return res.status(404).json({ error: "Usuário não encontrado" });
 
     res.json({
@@ -41,13 +30,13 @@ export const getPerfil = async (req, res) => {
   }
 };
 
-// Função para atualizar perfil
+// Função para atualizar perfil por ID
 export const atualizarPerfil = async (req, res) => {
-  const { emailUsuario } = req.params;
+  const { idUsuario } = req.params;
   const { nomeUsuario, fotoUsuario } = req.body;
 
   try {
-    const usuario = await usuarioModel.findOne({ where: { emailUsuario: emailUsuario.toLowerCase() } });
+    const usuario = await usuarioModel.findByPk(idUsuario);
     if (!usuario) return res.status(404).json({ error: "Usuário não encontrado" });
 
     usuario.nomeUsuario = nomeUsuario || usuario.nomeUsuario;
@@ -56,59 +45,6 @@ export const atualizarPerfil = async (req, res) => {
     await usuario.save();
     res.json({ message: "Perfil atualizado com sucesso!" });
   } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-};
-
-// NOVO: Função para verificar e-mail e nome (primeira etapa)
-export const verificarUsuario = async (req, res) => {
-  try {
-    const { emailUsuario, nomeUsuario } = req.body;
-    const emailMinusculo = emailUsuario.toLowerCase();
-
-    const usuario = await usuarioModel.findOne({ 
-      where: { 
-        emailUsuario: emailMinusculo,
-        nomeUsuario: nomeUsuario
-      } 
-    });
-
-    if (!usuario) {
-      return res.status(404).json({ error: "E-mail ou nome de usuário incorretos." });
-    }
-
-    res.status(200).json({ message: "Verificação bem-sucedida." });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message });
-  }
-};
-
-// NOVO: Função para redefinir a senha (segunda etapa)
-export const redefinirSenha = async (req, res) => {
-  try {
-    const { emailUsuario, nomeUsuario, novaSenha } = req.body;
-
-    const emailMinusculo = emailUsuario.toLowerCase();
-    
-    // Busca o usuário novamente para garantir que a combinação ainda é válida
-    const usuario = await usuarioModel.findOne({ 
-      where: { 
-        emailUsuario: emailMinusculo,
-        nomeUsuario: nomeUsuario
-      } 
-    });
-
-    if (!usuario) {
-      return res.status(404).json({ error: "E-mail ou nome de usuário incorretos." });
-    }
-    
-    usuario.senhaUsuario = novaSenha;
-    await usuario.save();
-
-    res.status(200).json({ message: "Senha redefinida com sucesso." });
-  } catch (err) {
-    console.error(err);
     res.status(500).json({ error: err.message });
   }
 };

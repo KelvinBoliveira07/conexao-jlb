@@ -6,10 +6,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   const tipoUsuarioEl = document.getElementById("tipoUsuario");
   const btnSalvar = document.getElementById("btnSalvar");
 
-  // Pega o email do usuário logado do sessionStorage
-  const emailLogado = sessionStorage.getItem("usuarioLogado");
-  if (!emailLogado) {
-    alert("Usuário não está logado!");
+  // Pega o ID do usuário logado do localStorage
+  const idLogado = localStorage.getItem("idUsuario");
+  if (!idLogado) {
+    alert("Sessão expirada ou usuário não logado. Por favor, faça login novamente.");
     window.location.href = "login.html";
     return;
   }
@@ -21,9 +21,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Função para carregar os dados do perfil
   const carregarPerfil = async () => {
     try {
-      const res = await fetch(`/api/userprofile/${encodeURIComponent(emailLogado)}`);
+      // Usa a nova rota com o ID do usuário
+      const res = await fetch(`/api/userprofile/${idLogado}`);
       
       if (!res.ok) {
+        // Se a resposta não for OK (por exemplo, 404), lança um erro
         const data = await res.json();
         throw new Error(data.error || "Erro ao carregar perfil");
       }
@@ -63,7 +65,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         fotoUsuario: imgPreview.src // envia base64
       };
 
-      const res = await fetch(`/api/userprofile/${encodeURIComponent(emailLogado)}`, {
+      // Usa a nova rota com o ID do usuário
+      const res = await fetch(`/api/userprofile/${idLogado}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
@@ -74,22 +77,32 @@ document.addEventListener("DOMContentLoaded", async () => {
         throw new Error(data.error || "Erro ao salvar perfil");
       }
 
-      await res.json(); // garante que JSON seja consumido
+      const data = await res.json();
 
-      Swal.fire({
-        icon: "success",
-        title: "Perfil atualizado!",
-        text: "Suas informações foram salvas com sucesso.",
-        confirmButtonText: "Beleza 👍"
-      });
+      // Verifique se o SweetAlert2 (Swal.fire) está incluído
+      // O erro "Swal is not defined" pode ocorrer se a biblioteca não estiver presente.
+      if (typeof Swal !== 'undefined') {
+        Swal.fire({
+          icon: "success",
+          title: "Perfil atualizado!",
+          text: "Suas informações foram salvas com sucesso.",
+          confirmButtonText: "Beleza 👍"
+        });
+      } else {
+        alert("Perfil atualizado com sucesso!");
+      }
 
     } catch (err) {
       console.error(err);
-      Swal.fire({
-        icon: "error",
-        title: "Erro",
-        text: err.message
-      });
+      if (typeof Swal !== 'undefined') {
+        Swal.fire({
+          icon: "error",
+          title: "Erro",
+          text: err.message
+        });
+      } else {
+        alert("Erro ao salvar perfil: " + err.message);
+      }
     }
   });
 });

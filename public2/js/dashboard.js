@@ -5,36 +5,25 @@ document.addEventListener('DOMContentLoaded', function () {
   // Função para determinar a cor do texto do datalabel
   function getDatalabelColor(context) {
     const backgroundColor = context.dataset.backgroundColor[context.dataIndex];
-    // Use preto em fundos mais claros, branco em fundos escuros
-    if (backgroundColor === '#e0e0e0' || backgroundColor === '#ffc000') {
+    if (backgroundColor === '#ffc000' || backgroundColor === '#e0e0e0') {
       return '#000';
     }
     return '#fff';
   }
 
   // Função para buscar dados da API e renderizar o gráfico de denúncias
-  async function renderDenunciasChart() {
+  async function renderDenunciasChart(idUsuario) {
     try {
-      const response = await fetch('/api/dashboard/denuncias');
+      const response = await fetch(`/api/dashboard/denuncias/${idUsuario}`);
       if (!response.ok) {
         throw new Error('Falha ao carregar dados das denúncias.');
       }
       const data = await response.json();
 
-      let labels;
-      let values;
-      let total;
+      const labels = data.length > 0 ? data.map(item => item.statusDenuncia) : ['Nenhum registro'];
+      const values = data.length > 0 ? data.map(item => item.total) : [1]; // Valor para o gráfico de pizza não ficar vazio
+      const total = data.length > 0 ? values.reduce((acc, curr) => acc + curr, 0) : 0;
 
-      if (data.length === 0) {
-        labels = ['Em Andamento', 'Aprovadas', 'Anuladas / Arquivadas'];
-        values = [1, 1, 1]; // Valores iguais para o gráfico ter fatias de mesmo tamanho
-        total = 0; // O total de denúncias é 0
-      } else {
-        labels = data.map(item => item.statusDenuncia);
-        values = data.map(item => item.total);
-        total = values.reduce((acc, curr) => acc + curr, 0);
-      }
-      
       const denunciasConfig = {
         type: 'pie',
         data: {
@@ -67,19 +56,15 @@ document.addEventListener('DOMContentLoaded', function () {
               }
             },
             datalabels: {
-                formatter: (value, context) => {
-                    let percentage;
-                    if (total === 0) {
-                        return '0%';
-                    }
-                    percentage = ((value / total) * 100).toFixed(2);
-                    return `${percentage}%`;
-                },
-                color: (context) => getDatalabelColor(context),
-                font: {
-                    weight: 'bold',
-                },
-                textAlign: 'center',
+              formatter: (value, context) => {
+                if (total === 0) {
+                  return '0%';
+                }
+                return `${((value / total) * 100).toFixed(2)}%`;
+              },
+              color: (context) => getDatalabelColor(context),
+              font: { weight: 'bold' },
+              textAlign: 'center',
             }
           }
         }
@@ -87,7 +72,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
       const denunciasCtx = document.getElementById('denunciasChart');
       new Chart(denunciasCtx, denunciasConfig);
-
       document.getElementById('denuncias-total').textContent = `Total: ${total}`;
 
     } catch (error) {
@@ -95,17 +79,18 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  async function renderUsuariosChart() {
+  // Função para buscar dados da API e renderizar o gráfico de usuários
+  async function renderUsuariosChart(idUsuario) {
     try {
-      const response = await fetch('/api/dashboard/usuarios'); 
+      const response = await fetch(`/api/dashboard/usuarios/${idUsuario}`);
       if (!response.ok) {
         throw new Error('Falha ao carregar dados dos usuários.');
       }
       const data = await response.json();
-      const total = data.map(item => item.total).reduce((acc, curr) => acc + curr, 0);
 
-      const labels = data.map(item => item.statusUsuario);
-      const values = data.map(item => item.total);
+      const labels = data.length > 0 ? data.map(item => item.statusUsuario) : ['Nenhum registro'];
+      const values = data.length > 0 ? data.map(item => item.total) : [1]; // Valor para o gráfico não ficar vazio
+      const total = data.length > 0 ? values.reduce((acc, curr) => acc + curr, 0) : 0;
 
       const usuariosConfig = {
         type: 'doughnut',
@@ -113,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
           labels: labels,
           datasets: [{
             data: values,
-            backgroundColor: ['#1565c0', '#e0e0e0'], 
+            backgroundColor: ['#1565c0', '#e0e0e0'],
             hoverOffset: 4
           }]
         },
@@ -136,15 +121,15 @@ document.addEventListener('DOMContentLoaded', function () {
               }
             },
             datalabels: {
-                formatter: (value, context) => {
-                    const percentage = (value / total * 100).toFixed(2);
-                    return `${percentage}%`;
-                },
-                color: (context) => getDatalabelColor(context),
-                font: {
-                    weight: 'bold',
-                },
-                textAlign: 'center',
+              formatter: (value, context) => {
+                if (total === 0) {
+                  return '0%';
+                }
+                return `${((value / total) * 100).toFixed(2)}%`;
+              },
+              color: (context) => getDatalabelColor(context),
+              font: { weight: 'bold' },
+              textAlign: 'center',
             }
           }
         }
@@ -152,7 +137,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
       const usuariosCtx = document.getElementById('usuariosChart');
       new Chart(usuariosCtx, usuariosConfig);
-
       document.getElementById('usuarios-total').textContent = `Total: ${total}`;
 
     } catch (error) {
@@ -160,6 +144,18 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  renderDenunciasChart(); 
-  renderUsuariosChart();
+  // Função para inicializar o dashboard
+  function initDashboard() {
+    const idUsuario = localStorage.getItem('idUsuario');
+    if (!idUsuario) {
+      console.error('ID de usuário não encontrado no localStorage. O dashboard não será carregado.');
+      alert('Sua sessão expirou ou não foi possível identificar o usuário. Por favor, faça login novamente.');
+      window.location.href = 'loginadm.html';
+      return;
+    }
+    renderDenunciasChart(idUsuario); 
+    renderUsuariosChart(idUsuario);
+  }
+
+  initDashboard();
 });
